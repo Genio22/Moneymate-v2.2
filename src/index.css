@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Theme variables.
+ * Tailwind palettes (primary / accent / surface) resolve to these rgb
+ * triplets, so switching `html.dark` re-skins every existing class.
+ * Light mode: high steps = dark text, low steps = light backgrounds.
+ * Dark mode: the scale inverts (low steps = dark panels, high = light text),
+ * with tints (primary-50, accent-50) mapped to deep navies/teals.
+ */
+:root {
+  color-scheme: light;
+
+  --mm-primary-50: 238 244 255;
+  --mm-primary-100: 219 230 254;
+  --mm-primary-200: 191 211 254;
+  --mm-primary-300: 147 180 253;
+  --mm-primary-400: 96 144 250;
+  --mm-primary-500: 59 109 246;
+  --mm-primary-600: 37 79 235;
+  --mm-primary-700: 29 62 216;
+  --mm-primary-800: 30 54 174;
+  --mm-primary-900: 30 51 137;
+  --mm-primary-950: 23 33 84;
+
+  --mm-accent-50: 240 253 250;
+  --mm-accent-100: 204 251 241;
+  --mm-accent-300: 94 234 212;
+  --mm-accent-500: 20 184 166;
+  --mm-accent-600: 13 148 136;
+  --mm-accent-700: 15 118 110;
+
+  --mm-surface-50: 248 250 252;
+  --mm-surface-100: 241 245 249;
+  --mm-surface-200: 226 232 240;
+  --mm-surface-300: 203 213 225;
+  --mm-surface-400: 148 163 184;
+  --mm-surface-500: 100 116 139;
+  --mm-surface-600: 71 85 105;
+  --mm-surface-700: 51 65 85;
+  --mm-surface-800: 30 41 59;
+  --mm-surface-900: 15 23 42;
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --mm-primary-50: 23 33 84;
+  --mm-primary-100: 30 51 137;
+  --mm-primary-200: 30 54 174;
+  --mm-primary-300: 29 62 216;
+  --mm-primary-400: 37 79 235;
+  --mm-primary-500: 59 109 246;
+  --mm-primary-600: 59 109 246;
+  --mm-primary-700: 96 144 250;
+  --mm-primary-800: 147 180 253;
+  --mm-primary-900: 191 211 254;
+  --mm-primary-950: 238 244 255;
+
+  --mm-accent-50: 4 47 46;
+  --mm-accent-100: 19 78 74;
+  --mm-accent-300: 94 234 212;
+  --mm-accent-500: 45 212 191;
+  --mm-accent-600: 45 212 191;
+  --mm-accent-700: 94 234 212;
+
+  --mm-surface-50: 13 20 35;
+  --mm-surface-100: 15 23 42;
+  --mm-surface-200: 30 41 59;
+  --mm-surface-300: 51 65 85;
+  --mm-surface-400: 100 116 139;
+  --mm-surface-500: 148 163 184;
+  --mm-surface-600: 203 213 225;
+  --mm-surface-700: 226 232 240;
+  --mm-surface-800: 241 245 249;
+  --mm-surface-900: 248 250 252;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-surface-100 text-surface-800 antialiased;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* consistent, tabular money display */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* thin, unobtrusive scrollbars for desktop */
+@media (pointer: fine) {
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { @apply bg-surface-300 rounded-full; }
+  ::-webkit-scrollbar-track { background: transparent; }
+}
+
+input[type='date'] { min-height: 42px; }
+
+/* safe-area padding for mobile bottom nav */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* slightly brighten saturated red text for dark backgrounds */
+html.dark .text-red-600 { color: rgb(248 113 113); }
+
+@media print {
+  .no-print { display: none !important; }
+}
